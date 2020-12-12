@@ -32,14 +32,15 @@ const RotasDrawer = () => {
             )
         }}
       />
-      <Drawer.Screen 
+        <Drawer.Screen 
         name="Perfil" 
         component={Perfil}
-         options={{
-            drawerIcon: ({color, size}) => (
-                <MaterialIcons name="person" size={size} color={color} />
-            )
-        }}
+        initialParams={{item: {}, operacao: 'adicionar'}}
+        options={{
+          drawerIcon: ({color, size}) => (
+            <MaterialIcons name="done-all" size={size} color={color} />
+          )
+        }} 
       />
     </Drawer.Navigator>
   );

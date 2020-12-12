@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, Image, TouchableOpacity } from 'react-native';
 import estiloLista from './estiloLista';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const Lista = ({data}) => {
+const Lista = ({data, detalhe}) => {
 
     const [item, setItem] = useState(data);
 
     return (
-        <View style={estiloLista.areaItens}>
-            
-            <LinearGradient colors={['#3d3d3d','#ededed','#ededed']}>
-                <Text style={estiloLista.itemTitulo}> {item.titulo} </Text>
+        <TouchableOpacity style={estiloLista.areaItens} onPress={detalhe}>
+
+            <LinearGradient colors={['#14417b', '#92afd7', '#92afd7']}>
+                <Text style={estiloLista.itemTitulo}> {item.nome} </Text>
             </LinearGradient>
-            <Text style={estiloLista.itemSubTitulo}> {item.autor} ({item.anoPublicacao}) <br></br> {item.descricao} </Text>
+            <Text style={estiloLista.itemSubTitulo}> {item.sala} ({item.turma}) </Text>
             
-            <LinearGradient colors={['#ededed','#ededed','#3d3d3d']}>
+            <LinearGradient colors={['#92afd7', '#92afd7', '#14417b']}>
+                <Text> </Text>
+                {/*
                 <Image 
-                    style={estiloLista.itemFoto}
-                    source={item.foto} 
                     resizeMode='contain'
+                    style={estiloLista.itemFoto}
+                    source={item.foto}
                 />
+                */} 
             </LinearGradient>
-            
-        </View>
+
+        </TouchableOpacity>
     );
 }
 

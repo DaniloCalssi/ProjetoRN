@@ -7,49 +7,50 @@ import RotasDrawer from '../rotasDrawer/RotasDrawer';
 
 const Tab = createBottomTabNavigator();
 
+const icones = {
+  Inicial: { name: 'home' },
+  List: { name: 'storage' },
+  Perfil: { name: 'done-all' }, 
+}
+
 const RotasTab = () => {
   return (
-    <Tab.Navigator 
+    <Tab.Navigator
       tabBarOptions={
-      {
-        labelStyle: { fontSize: 24 },
-        style: {backgroundColor: '#333333'},
-        activeTintColor: '#FFFFFF', 
-        showLabel:false,
+        {
+          style: {backgroundColor: '#081a31', borderTopColor: '#081a31'},
+          activeTintColor: '#FFFFFF',
+          showLabel: false,
+        }
       }
+      screenOptions={ ({route}) => ({
+        tabBarIcon: ({color}) => {
+            const {name} = icones[route.name];
+            return <MaterialIcons name={name} size={30} color={color} />
+          }
+        })
       }
     >
       <Tab.Screen 
         name="Inicial" 
         component={RotasDrawer}
         options={{
-            unmountOnBlur: true,
-            tabBarLabel: 'Inicial',
-            tabBarIcon: ({ color }) => (
-                <MaterialIcons name='home' size={24} color={color}/>
-            ),
-        }}
-       />
-      <Tab.Screen
-       name="List" 
-       component={List}
-       options={{
-            tabBarLabel: 'List',
-            tabBarIcon: ({ color }) => (
-                <MaterialIcons name='storage' size={24} color={color}/>
-            ),
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen 
-        name="Perfil" 
-        component={Perfil}
+        name="List" 
+        component={List} 
         options={{
-            tabBarLabel: 'Perfil',
-            tabBarIcon: ({ color }) => (
-                <MaterialIcons name="person" size={24} color={color}/>
-            ),
+          unmountOnBlur: true,
         }}
-      />
+      />      
+      <Tab.Screen
+        name="Perfil"
+        component={Perfil} 
+        initialParams={{item: {}, operacao: 'adicionar'
+        }}
+    />
     </Tab.Navigator>
   );
 }

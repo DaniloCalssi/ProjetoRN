@@ -2,20 +2,22 @@ import { StyleSheet } from 'react-native';
 
 const estiloList = StyleSheet.create({
    container: {   
-      flex: 1,    
+      flex: 1,
    },
    header: {
-       height: 40,
-       backgroundColor: '#3d3d3d',
-       flexDirection: 'row',
-       alignItems: 'center',
-       justifyContent: 'space-between',
-       padding: 5,
+      height: 50,
+      backgroundColor: '#14417b',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: 5,
    },
    texto: {
-       fontSize: 18,
-       color: '#FFFFFF',
+      fontSize: 20,
+      color: '#FFFFFF',
+      fontWeight: 'bold',
    },
+
 });
 
   export default estiloList;

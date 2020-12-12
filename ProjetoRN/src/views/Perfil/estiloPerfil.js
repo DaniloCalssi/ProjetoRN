@@ -2,37 +2,86 @@ import { StyleSheet } from 'react-native';
 
 const estiloPerfil = StyleSheet.create({
    container: {   
-      flex: 1,    
+      flex: 1,
+      backgroundColor: '#92afd7',   
    },
    header: {
-       height: 40,
-       backgroundColor: '#3d3d3d',
+       height: 50,
+       backgroundColor: '#14417b',
        flexDirection: 'row',
        alignItems: 'center',
        justifyContent: 'space-between',
        padding: 5,
    },
+   formularioContainer: {
+       flex: 1,
+       justifyContent: 'center',
+   },
    texto: {
+      fontSize: 20,
+      color: '#FFFFFF',
+      fontWeight: 'bold',
+   },
+   campoContainer: {
+        flexDirection: 'row',
+        padding: 5,
+        paddingLeft: 50,
+        paddingRight: 50,
+        margin: 5,
+        marginRight: 50,
+        alignItems: 'center',
+   },
+   campoContainerDescricao: {
+       flexDirection: 'row',
+       padding: 5,
+       paddingLeft: 45,
+       paddingRight: 40,
+       margin: 5,
+   },
+   campo: {
+       width: '100%',
        fontSize: 18,
        color: '#FFFFFF',
-       textAlign: 'center',
+       backgroundColor: '#4c669f',
+       marginLeft: 15,
+       padding: 10,
+       borderWidth: 1,
+       borderColor: '#192f6a',
+       borderRadius: 5,
    },
-    text: {
+   campoDescricao: {
+       width: '90%',
+       height: 100,
        fontSize: 18,
-       color: '#000000',
-       textAlign: 'center',
+       color: '#FFFFFF',
+       backgroundColor: '#4c669f',
+       marginLeft: 15,
+       padding: 10,
+       borderWidth: 1,
+       borderColor: '#192f6a',
+       borderRadius: 5,
+       textAlignVertical: 'top',
    },
-   titulo: {
-       fontSize: 18,
-       color: '#000000',
-       textAlign: 'center',
-       fontWeight: 'bold',
+   campoDescricaoScroll: {
+       width: '100%',
    },
-    itemFoto: {
-        height: 300,
-        marginTop: 20,
-        marginBottom: 20
-    },
+   botoesContainer: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      paddingRight: 50,
+   },
+   botaoContainer: {
+      alignItems: 'center',
+      padding: 5,
+   },
+   botao: {
+       width: 50,
+       height: 50,
+       borderRadius: 10,
+       justifyContent: 'center',
+       alignItems: "center",
+       padding: 10,
+   },
 });
 
-  export default estiloPerfil;
+export default estiloPerfil;

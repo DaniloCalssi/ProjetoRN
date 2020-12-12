@@ -1,51 +1,40 @@
-import React, { useState } from 'react';
-import { Text, View, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import estiloList from './estiloList';
 import Lista from '../../components/Lista/Lista';
 import { MaterialIcons } from '@expo/vector-icons';
+import { AlunoFB } from '../../firebase/alunoFB';
 
 function List({ navigation }) {
 
-    const [list, setList] = useState( [
-        {
-            id: '1',
-            titulo: 'GeForce RTX 3090 (GIGABYTE)',
-            descricao: '24Gb de memória GDDR6X , 384 bits, com clock de 19500MHz | Resolução máxima digital: 7680 x 4320 @ 60Hz | CUDA cores: 10496',
-            autor: 'NVIDIA',
-            anoPublicacao: '2020',
-            foto: require('../../../assets/itens/1.jpg'),
-        },
-        {
-            id: '2',
-            titulo: 'GeForce RTX 3090 (ASUS)',
-            descricao: '10Gb de memória GDDR6X , 320 bits, com clock de 19500 MHz | Resolução máxima digital: 7680 x 4320 @ 60Hz | Cuda cores: 8704',
-            autor: 'NVIDIA',
-            anoPublicacao: '2020',
-            foto: require('../../../assets/itens/2.jpg'),
-        },
-        {
-            id: '3',
-            titulo: 'GeForce RTX 2080 Super (GALAX)',
-            descricao: '8Gb de memória GDDR6 , 256 bits, com clock de 15500 MHz | Resolução máxima digital: 7680 x 4320 @ 60Hz | Cuda cores: 3072',
-            autor: 'NVIDIA',
-            anoPublicacao: '2019',
-            foto: require('../../../assets/itens/3.jpg'),
-        },
-        {
-            id: '4',
-            titulo: 'GeForce RTX 2060 (GIGABYTE)',
-            descricao: '6Gb de memória GDDR6 , 192 bits, com clock de 14000 MHz | Resolução máxima digital: 7680 x 4320 @ 60Hz | Cuda cores: 1920',
-            autor: 'NVIDIA',
-            anoPublicacao: '2019',
-            foto: require('../../../assets/itens/4.jpg'),
-        }
-                                                ]);
+    const [list, setList] = useState([]);
 
+    const alunoFb = new AlunoFB();
+
+    useEffect(() => {
+        alunoFb.pegarColecao()
+            .orderBy('nome')
+            .onSnapshot((query) => {
+                const items = [];
+                query.forEach((doc) => {
+                    items.push({...doc.data(), id: doc.id});
+                });
+                setList(items);
+            });
+    }, []);
 
     const voltar = () => {
         navigation.navigate('Inicial')
     }
+
+    const adicionar = () => {
+        navigation.navigate('Perfil')
+    }
     
+    const editar = (item) => {
+        navigation.navigate('Perfil',item)
+    }
+
     return (
         <View style={estiloList.container}>
 
@@ -54,14 +43,16 @@ function List({ navigation }) {
                     <MaterialIcons name="arrow-back" size={24} color="white" />
                 </TouchableOpacity>
                 <Text style={estiloList.texto}>Lista</Text>
-                <MaterialIcons name="add" size={24} color="white" />
-            </View>        
-            
-            <FlatList
+                <TouchableOpacity onPress={adicionar}>
+                    <MaterialIcons name="add" size={24} color="white" />
+                </TouchableOpacity>
+            </View>
+
+            <FlatList 
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item) => item.id}
                 data={list}
-                renderItem={ ({item}) => <Lista data={item} />}
+                renderItem={ ({item}) => <Lista data={item} detalhe={() => editar(item)}/>}
             />
 
         </View>
@@ -69,3 +60,4 @@ function List({ navigation }) {
 }
 
 export default List;
+

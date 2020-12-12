@@ -34,14 +34,14 @@ function Inicial({ navigation }) {
             <ImageBackground source={require('../../../assets/imagens/fogo.jpg')} style={estiloInicial.fundo}>
 
                 <TouchableOpacity onPress={abrirList}>
-                    <ImageBackground source={require('../../../assets/imagens/logo.jpg')} style={estiloInicial.botaoBackground}>
+                    <ImageBackground source={require('../../../assets/imagens/lista.png')} style={estiloInicial.botaoBackground}>
                         <Text style={estiloInicial.botaoTexto}>Lista</Text>
                     </ImageBackground>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={abrirPerfil}>
                     <ImageBackground source={require('../../../assets/imagens/foto.jpg')} style={estiloInicial.botaoBackground}>
-                        <Text style={estiloInicial.botaoTexto}>Perfil</Text>
+                        <Text style={estiloInicial.botaoTexto}>Aluno</Text>
                     </ImageBackground>
                 </TouchableOpacity>
 
